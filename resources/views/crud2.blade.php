@@ -17,6 +17,7 @@
                             <h5 class="card-subtitle">System creater</h5>
                         </div>
                     </div>
+                    <a href="/migrate" class="btn btn-success float-right mb-5">Migrate</a>
                     @if ($message = Session::get('success'))
                     <div class="alert alert-success alert-block">
                         <button type="button" class="close" data-dismiss="alert">×</button>
@@ -126,15 +127,15 @@
                         <h4>Folder and Path:</h4>
                         <div class="form-group">
                           <input type="text"
-                            class="form-control" name="view_path" id="view_path" placeholder="view-path">
+                            class="form-control" name="view_path" id="view_path" value="admin" placeholder="view-path">
                         </div>
                         <div class="form-group">
                           <input type="text"
-                            class="form-control" name="controller_namespace" id="controller-namespace"   placeholder="controller-namespace">
+                            class="form-control" name="controller_namespace" value="Admin" id="controller-namespace"   placeholder="controller-namespace">
                         </div>
                         <div class="form-group">
                           <input type="text"
-                            class="form-control" name="route_group" id="route_group"  placeholder="route-group">
+                            class="form-control" name="route_group" id="route_group" value="admin"  placeholder="route-group">
                         </div>
                         <button type="submit" class="btn btn-success">Submit</button>
                     </form>
