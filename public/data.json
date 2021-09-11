@@ -1,1 +1,1 @@
-{"fields":[{"name":"test","type":"string"},{"name":"Phoebe Robertson","type":"string"}],"foreign_keys":[],"validations":[],"relationships":[]}
+{"fields":[{"name":"Name","type":"string"},{"name":"Address","type":"string"}],"foreign_keys":[],"validations":[],"relationships":[]}

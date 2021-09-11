@@ -10,7 +10,7 @@ use Artisan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class HomeController extends Controller
+class CrudController extends Controller
 {
 
     public function __construct()
@@ -107,10 +107,12 @@ class HomeController extends Controller
             echo 'Caught exception: ', $e->getMessage(), "\n";
         }
         if ($request->name != null) {
-            // Artisan::call('crud:generate "' . $request->modelName . '" --fields_from_file="data.json" --view-path="' . $request->view_path . '" --controller-namespace=App\Http\Controllers\"' . $request->controller_namespace . '"  --route-group="' . $request->route_group . '" --form-helper=html');
+
             // Artisan::call('migrate');
 
             // Artisan::call('crud:generate "' . $request->modelName . '" --fields_from_file="data.json" --view-path="' . $request->view_path . '" --controller-namespace="' . $request->controller_namespace . '" --route-group=' . $request->route_group . '" --form-helper=html --model-namespace=Models --localize=yes --locales=en,bn,es,fr');
+
+            Artisan::call('crud:generate "' . $request->modelName . '" --fields_from_file="data.json" --view-path="' . $request->view_path . '" --controller-namespace="' . $request->controller_namespace . '" --route-group=' . $request->route_group . '" --form-helper=html --model-namespace=Models ');
 
             return redirect('/crud2index#modelId')->with('success', 'make successfully!');
 
