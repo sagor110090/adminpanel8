@@ -56,7 +56,7 @@
                 @endforeach
             </tbody>
         </table>
-        <div class="pagination-wrapper"> {!! $data->appends(['search' => Request::get('search')])->render() !!}
+        <div class="pagination-wrapper"> {!! $data->links('vendor.livewire.bootstrap') !!}
         </div>
     </div>
 </div>
