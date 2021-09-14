@@ -19,8 +19,10 @@ class StudentController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $student = Student::where('Name', 'LIKE', "%$keyword%")
-                ->orWhere('Address', 'LIKE', "%$keyword%")
+            $student = Student::where('name', 'LIKE', "%$keyword%")
+                ->orWhere('role', 'LIKE', "%$keyword%")
+                ->orWhere('father_name', 'LIKE', "%$keyword%")
+                ->orWhere('mother_name', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
             $student = Student::latest()->paginate($perPage);
@@ -39,7 +41,12 @@ class StudentController extends Controller
 
     public function store(Request $request)
     {
-        
+        $this->validate($request, [
+			'name' => 'required',
+			'role' => 'required',
+			'father_name' => 'required',
+			'mother_name' => 'required'
+		]);
         $requestData = $request->all();
         
         Student::create($requestData);
@@ -66,7 +73,12 @@ class StudentController extends Controller
 
     public function update(Request $request, $id)
     {
-        
+        $this->validate($request, [
+			'name' => 'required',
+			'role' => 'required',
+			'father_name' => 'required',
+			'mother_name' => 'required'
+		]);
         $requestData = $request->all();
         
         $student = Student::findOrFail($id);

@@ -10,7 +10,7 @@
         </ul>
     </div>
     <ul class="navbar-nav navbar-right">
-        <form action="{{ url('locale/') }}" method="post">
+        {{-- <form action="{{ url('locale/') }}" method="post">
             @csrf
             <select name="locale"  class="form-control" onchange="this.form.submit()">
                 <option value="en"
@@ -20,7 +20,7 @@
                     {{ \Session::has('locale') ? (\Session::get('locale') == 'bn' ? 'selected' : '') : '' }}>Bangla
                 </option>
             </select>
-        </form>
+        </form> --}}
         <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
                 class="nav-link notification-toggle nav-link-lg"><i data-feather="bell" class="bell"></i>
             </a>

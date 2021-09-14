@@ -2,5 +2,5 @@
     <label for="%1$s" class="control-label">{{ __(%2$s) }}</label>
     %3$s
     {!! $errors->first('%1$s', '<p class="text-danger">:message</p>') !!}
-    <div class="invalid-feedback"> What's your %1$s?</div>
+    <div class="invalid-feedback"> What's your {{ __(%2$s) }}?</div>
 </div>

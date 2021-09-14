@@ -1,1 +1,1 @@
-{"fields":[{"name":"Name","type":"string"},{"name":"Address","type":"string"}],"foreign_keys":[],"validations":[],"relationships":[]}
+{"fields":[{"name":"name","type":"string"},{"name":"role","type":"string"},{"name":"father_name","type":"string"},{"name":"mother_name","type":"string"}],"foreign_keys":[],"validations":[{"field":"name","rules":"required"},{"field":"role","rules":"required"},{"field":"father_name","rules":"required"},{"field":"mother_name","rules":"required"}],"relationships":[]}

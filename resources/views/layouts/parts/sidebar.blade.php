@@ -10,10 +10,7 @@
             <li class="dropdown {{ Request::is('dashboard') ? 'active' : '' }}">
                 <a href="{{ url('/dashboard') }}" class="nav-link"><i
                         data-feather="monitor"></i><span>Dashboard</span></a>
-            </li> 
-        </ul>
-    </aside>
-</div>
+            </li>
 
 <li class="dropdown {{ Request::is("admin/student*") ? "active":""}}"> <a href="{{ url("admin/student") }}"
         class="nav-link" ><i data-feather="copy"></i><span>Student </span></a>

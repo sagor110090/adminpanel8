@@ -7,9 +7,9 @@
     @endslot
 @endcomponent
 
-             
+
 <div class="card">
-    <div class="card-header">{{ __('Edit %%modelName%%') }}</div>
+    <h6 class="card-header">{{ __('Edit %%modelName%%') }}</h6>
     <div class="card-body">
         <a href="#" onclick="history.back()" title="Back"><button
             class="btn btn-warning btn-sm"><i class="feather-16" data-feather="arrow-left"></i> {{ __('Back') }}
@@ -26,6 +26,6 @@
 
     </div>
 </div>
-       
+
 
 @endsection

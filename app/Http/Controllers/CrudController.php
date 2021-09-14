@@ -7,6 +7,7 @@ use Auth;
 
 use Artisan;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -41,7 +42,7 @@ class CrudController extends Controller
             if ($request->name != null) {
                 foreach ($request->name as $i => $value) {
                     $formdata[$i] = [
-                        'name' => $request->name[$i],
+                        'name' => Str::lower($request->name[$i]),
                         'type' => $request->type[$i],
                     ];
                 }
@@ -51,7 +52,7 @@ class CrudController extends Controller
                 foreach ($request->referencesTable as $i => $value) {
                     if ($request->referencesTable[$i] != null) {
                         $foreign_keys[$i] = [
-                            "column" => $request->name[$i],
+                            "column" => Str::lower($request->name[$i]),
                             "references" => $request->referencesField[$i],
                             "on" => $request->referencesTable[$i],
                             "onDelete" => "cascade",
@@ -65,7 +66,7 @@ class CrudController extends Controller
                 foreach ($request->name as $i => $value) {
                     if ($request->required[$i] != 'not') {
                         $validate[$i] = [
-                            'field' => $request->name[$i],
+                            'field' => Str::lower($request->name[$i]),
                             'rules' => $request->required[$i],
                         ];
                     }

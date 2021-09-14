@@ -2,9 +2,9 @@
 @section('content')
 
 @component('layouts.parts.breadcrumb')
-@slot('title')
-{{ __(' Student') }}
-@endslot
+    @slot('title')
+        {{ __(' Student') }}
+    @endslot
 @endcomponent
 
 
@@ -13,69 +13,18 @@
 
     <div class="card-body">
 
-        <a href="{{ url('/admin/student/create') }}" class="btn btn-success btn-sm" title="Add New  Student">
-            <i class="feather-16" data-feather="plus"></i> {{ __('Add New') }}
-        </a>
+            <a href="{{ url('/admin/student/create') }}" class="btn btn-success btn-sm"
+                title="Add New  Student">
+                <i class="feather-16" data-feather="plus"></i> {{ __('Add New') }}
+            </a>
 
-
-        <form method="GET" action="{{ url('/admin/student') }}" accept-charset="UTF-8"
-            class="form-inline my-2 my-lg-0 float-right" role="search">
-            <div class="input-group">
-                <input type="text" class="form-control" name="search" placeholder="Search..."
-                    value="{{ request('search') }}">
-                <span class="input-group-append">
-                    <button class="btn btn-secondary" type="submit">
-                        <i class="feather-16" data-feather="search"></i>
-                    </button>
-                </span>
-            </div>
-        </form>
-
-        <br />
-        <br />
-        <div class="table-responsive mt-3">
-            <table class="table table-striped table-hover" style="width:100%;">
-                <thead>
-                    <tr>
-                        <th width='30'>#</th>
-                        <th>Name</th>
-                        <th>Address</th>
-                        <th>{{ __('Actions') }}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($student as $item)
-                    <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $item->Name }}</td>
-                        <td>{{ $item->Address }}</td>
-                        <td>
-                            <a href="{{ url('/admin/student/' . $item->id) }}" title="View"><button
-                                    class="btn btn-info btn-sm"><i class="feather-16"
-                                        data-feather="eye"></i></button></a>
-
-                            <a href="{{ url('/admin/student/' . $item->id . '/edit') }}" title="Edit"><button
-                                    class="btn btn-primary btn-sm"><i class="feather-16" data-feather="edit"></i>
-                                </button></a>
-
-                            <form method="POST" id="deleteButton{{$item->id}}"
-                                action="{{ url('/admin/student' . '/' . $item->id) }}" accept-charset="UTF-8"
-                                style="display:inline">
-                                {{ method_field('DELETE') }}
-                                {{ csrf_field() }}
-                                <button type="submit" class="btn btn-danger btn-sm" title="Delete"
-                                    onclick="sweetalertDelete({{$item->id}})"><i class="feather-16"
-                                        data-feather="trash-2"></i></button>
-                            </form>
-
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            <div class="pagination-wrapper"> {!! $student->appends(['search' => Request::get('search')])->render() !!}
-            </div>
-        </div>
+            @livewire('table', [
+                'fields' => ['name','role','father_name','mother_name',],
+                'actionLink' => ['show','edit','delete'],
+                'path' => "/admin/student",
+                'searchable' => ['name','role','father_name','mother_name',],
+                'modelName' => str_replace(" ","",'App\Models\ Student')
+           ])
 
     </div>
 </div>
