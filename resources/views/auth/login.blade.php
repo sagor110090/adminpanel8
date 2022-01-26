@@ -1,77 +1,81 @@
-@extends('auth.layouts.app')
+@extends('auth.auth')
+@section('title', __('Login'))
 
 @section('content')
-<section class="section">
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
-                <div class="card card-primary">
-                    <div class="card-header">
-                        <h4>{{ __('Login') }}</h4>  
-                    </div>
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate="">
-                            @csrf
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input id="email" type="email" tabindex="1" class="form-control" name="email" value="{{ old('email') }}" required>
-                                {!! $errors->first('email', '<p class="text-danger">:message</p>') !!}
-                                <div class="invalid-feedback">Please fill in your email</div>
-                            </div>
-                            <div class="form-group">
-                                <div class="d-block">
-                                    <label for="password" class="control-label">Password</label>
-                                    <div class="float-right">
-                                        @if (Route::has('password.request'))
-                                        <a class="text-small" href="{{ route('password.request') }}">
-                                            {{ __('Forgot Your Password?') }}
-                                        </a>
-                                        @endif
-                                    </div>
-                                </div>
-                                <input id="password" type="password" tabindex="2" class="form-control  " name="password" required >
-                                {!! $errors->first('password', '<p class="text-danger">:message</p>') !!}
-                                <div class="invalid-feedback"> please fill in your password </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="custom-control custom-checkbox">
-
-                                    <input class="custom-control-input" tabindex="3" type="checkbox" name="remember"
-                                        id="remember-me">
-
-                                    <label class="custom-control-label" for="remember-me">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                                    Login
-                                </button>
-                            </div>
-                        </form>
-                        <div class="text-center mt-4 mb-3">
-                            <div class="text-job text-muted">Login With Social</div>
-                        </div>
-                        <div class="row sm-gutters">
-                            <div class="col-6">
-                                <a class="btn btn-block btn-social btn-facebook">
-                                    <span class="fab fa-facebook"></span> Facebook
-                                </a>
-                            </div>
-                            <div class="col-6">
-                                <a class="btn btn-block btn-social btn-twitter">
-                                    <span class="fab fa-twitter"></span> Twitter
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+<div class="row justify-content-center mt-20">
+    <div class="col-12 col-md-8 col-lg-6 col-xxl-4 py-8 py-xl-0">
+        <div class="card shadow">
+            <!-- Card body -->
+            <div class="card-body p-6">
+                <div class="mb-4">
+                    <a href="/"><img src="" class="mb-2" alt=""></a>
+                    <p class="mb-6">Please enter your user information.</p>
                 </div>
-                <div class="mt-5 text-muted text-center">
-                    Don't have an account? <a href="{{ url('/register') }}">Create One</a>
-                </div>
+                @include('layouts.parts.validation-message')
+                <!-- Form -->
+                <form method="POST" action="{{ route('login') }}">
+                    @csrf
+                    <!-- Username -->
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" class="form-control" value="{{old('email')}}" name="email"
+                            placeholder="Email address here" required="">
+                        @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                    <!-- Password -->
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" id="password" class="form-control" value="{{old('password')}}"
+                            name="password" placeholder="**************" required="">
+                        @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                    <!-- Checkbox -->
+                    <div class="d-lg-flex justify-content-between align-items-center
+                  mb-4">
+                        <div class="form-check custom-checkbox">
+                            <input type="checkbox" class="form-check-input" name="remember" id="remember"
+                                {{ old('remember') ? 'checked' : '' }}>
+                            <label class="form-check-label" for="rememberme">Remember
+                                me</label>
+                        </div>
+
+                    </div>
+                    <div>
+                        <!-- Button -->
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Sign
+                                in</button>
+                        </div>
+
+                        <div class="d-md-flex justify-content-between mt-4">
+                            <div class="mb-2 mb-md-0">
+                                <a href="{{ asset('register') }}" class="">Create An
+                                    Account </a>
+                            </div>
+                            @if (Route::has('password.request'))
+                            <div>
+                                <a href="{{ route('password.request') }}" class="text-inherit">
+                                    {{ __('Forgot Your Password?') }}
+                                </a>
+
+                            </div>
+                            @endif
+
+                        </div>
+                    </div>
+
+
+                </form>
             </div>
         </div>
     </div>
-</section>
+</div>
 @endsection

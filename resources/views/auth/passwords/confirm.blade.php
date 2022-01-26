@@ -1,11 +1,11 @@
-@extends('auth.layouts.app')
+@extends('auth.auth')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
+<div class="container d-flex flex-column">
+    <div class="row align-items-center justify-content-center g-0
+        min-vh-100">
         <div class="col-md-8">
-            <div class="col-md-12">
-                <div class="card">
+            <div class="card">
                 <div class="card-header">{{ __('Confirm Password') }}</div>
 
                 <div class="card-body">

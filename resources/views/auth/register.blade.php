@@ -1,71 +1,92 @@
-@extends('auth.layouts.app')
+@extends('auth.auth')
+@section('title', __('Register'))
 
 @section('content')
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="col-md-12">
-                <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+<div class="row justify-content-center mt-20">
+    <div class="col-12 col-md-8 col-lg-6 col-xxl-4 py-8 py-xl-0">
+        <div class="card smooth-shadow-md">
+            <div class="card-body p-6">
+                <div class="mb-4">
+                    <a href="/"><img src="" class="mb-2" alt=""></a>
+                    <p class="mb-6">Please enter your user information.</p>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}" class="needs-validation" novalidate="">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                {!! $errors->first('name', '<p class="text-danger">:message</p>') !!}
-                                <div class="invalid-feedback">Please fill in your name</div>
-
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                {!! $errors->first('email', '<p class="text-danger">:message</p>') !!}
-                                <div class="invalid-feedback">Please fill in your email</div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required autocomplete="new-password">
-                                {!! $errors->first('password', '<p class="text-danger">:message</p>') !!}
-                                <div class="invalid-feedback">Please fill in your password</div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                                {!! $errors->first('password_confirmation', '<p class="text-danger">:message</p>') !!}
-                                <div class="invalid-feedback">Please fill in your Confirm Password </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
                 </div>
+                @include('layouts.parts.validation-message')
+
+                <form method="POST" action="{{ route('register') }}">
+                    @csrf
+                    <!-- name -->
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" id="name" class="form-control" name="name" placeholder="Name" required="">
+                        @error('name')
+                        <span class="error text-danger" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+
+
+                    <!-- Email -->
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" class="form-control" name="email"
+                            placeholder="Email address here" required="">
+
+                        @error('email')
+                        <span class="error text-danger" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                    <!-- Password -->
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" id="password" class="form-control" name="password"
+                            placeholder="**************" required="">
+                    </div>
+                    <!-- Password -->
+                    <div class="mb-3">
+                        <label for="confirm-password" class="form-label">Confirm
+                            Password</label>
+                        <input type="password" id="confirm-password" class="form-control" name="password_confirmation"
+                            placeholder="**************" required="">
+                        @error('password')
+                        <span class="error text-danger" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                    <div>
+                        <!-- Button -->
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">
+                                Create Free Account
+                            </button>
+                        </div>
+
+                        <div class="d-md-flex justify-content-between mt-4">
+                            <div class="mb-2 mb-md-0">
+                                <a href="{{ asset('login') }}" class="">Already
+                                    member? Login </a>
+                            </div>
+                            @if (Route::has('password.request'))
+                            <div>
+                                <a href="{{ route('password.request') }}" class="text-inherit">
+                                    {{ __('Forgot Your Password?') }}
+                                </a>
+
+                            </div>
+                            @endif
+
+
+                        </div>
+                    </div>
+
+                </form>
             </div>
         </div>
     </div>
 </div>
+
 @endsection

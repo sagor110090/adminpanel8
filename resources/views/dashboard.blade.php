@@ -1,11 +1,7 @@
-@extends('layouts.app',['pageTitle' => __('Dashboard')])
-@section('content')
+@extends('layouts.app')
+{{-- @section('content')
 
-@component('layouts.parts.breadcrumb')
-@slot('title')
-{{ __(' Dashboard') }}
-@endslot
-@endcomponent
+
 
 
 <div class="card">
@@ -15,6 +11,6 @@
 
 
     </div>
-</div> 
+</div>
 
-@endsection
+@endsection--}}

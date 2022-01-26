@@ -14,15 +14,16 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         \DB::table('users')->delete();
-        
+
         \DB::table('users')->insert(array (
-            0 => 
+            0 =>
             array (
                 'id' => 1,
                 'name' => 'Mehedi Hasan Sagor',
+                'image' => '',
                 'email' => 'developer@sagor.com',
                 'email_verified_at' => NULL,
                 'password' => '$2y$10$zk6.13vjzD8o2tEWrP0RVePwcZnZZ91tRhhO2nEL6jBIA4EONMj6.',
@@ -31,7 +32,7 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => '2021-03-04 19:13:08',
             ),
         ));
-        
-        
+
+
     }
 }

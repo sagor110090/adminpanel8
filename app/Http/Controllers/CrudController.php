@@ -2,27 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use DB;
-use Auth;
-
-use Artisan;
-
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Artisan;
+use DB;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CrudController extends Controller
 {
-
-    public function __construct()
+    public function crud()
     {
-        // $this->middleware('auth');
-    }
-
-
-    public function crud2index()
-    {
-        return view('crud2');
+        return view('crud.index');
     }
     public function jsonSave(Request $request)
     {
