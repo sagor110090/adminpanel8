@@ -24,7 +24,4 @@
 
 
 
-<li class="nav-item"> <a href="{{ url("admin/student") }}"
-        class="nav-link has-arrow {{ Request::is("admin/student*") ? "active":""}}" ><i class="nav-icon icon-xs me-2 fa fa-list"></i> Student</a>
-
-        </li>
+ 
